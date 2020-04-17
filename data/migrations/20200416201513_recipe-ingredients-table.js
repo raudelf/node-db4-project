@@ -31,7 +31,7 @@ exports.up = function(knex) {
                 .notNullable();
         })
         .createTable('steps', tbl => {
-            tbl.increments('id')
+            tbl.increments('id');
             tbl.integer('recipe_id')
                 .unsigned()
                 .notNullable()
@@ -43,13 +43,16 @@ exports.up = function(knex) {
                 .unsigned()
                 .notNullable()
                 .unique()
-                .autoIncrement()
             tbl.text('instructions')
-                .notNullable()
+                .notNullable();
         })
     )
 };
 
 exports.down = function(knex) {
-  
+    return knex.schema
+        .dropTableIfExists('recipes')
+        .dropTableIfExists('ingredients')
+        .dropTableIfExists('recipe-ingredients')
+        .dropTableIfExists('steps')
 };
