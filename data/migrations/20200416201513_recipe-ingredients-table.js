@@ -42,7 +42,6 @@ exports.up = function(knex) {
             tbl.integer('step_number')
                 .unsigned()
                 .notNullable()
-                .unique()
             tbl.text('instructions')
                 .notNullable();
         })
